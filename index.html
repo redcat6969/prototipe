@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Оценка экспресс</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand__mark" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="brand__text">
+            <strong>Автохаб</strong>
+            <span>проект Avito</span>
+          </div>
+        </div>
+
+        <div class="topbar__meta">
+          <span>ID: 5</span>
+          <button class="topbar__chip" type="button">Аксель</button>
+          <button class="topbar__chip" type="button">Иван Петров</button>
+          <button class="topbar__icon" type="button" aria-label="Календарь">
+            <span>◫</span>
+          </button>
+          <button class="topbar__icon" type="button" aria-label="Уведомления">
+            <span>◌</span>
+          </button>
+          <button class="topbar__icon" type="button" aria-label="Выход">
+            <span>↪</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <nav class="sidebar__nav" aria-label="Разделы">
+            <a class="sidebar__item" href="#">Новости</a>
+            <a class="sidebar__item" href="#">Рабочий стол</a>
+            <a class="sidebar__item" href="#">Отчёт руководителя</a>
+            <a class="sidebar__item" href="#">Ваша вовлечённость</a>
+            <a class="sidebar__item" href="#">Выкуп</a>
+            <a class="sidebar__item" href="#">Сделки</a>
+            <a class="sidebar__item" href="#">Склад</a>
+            <a class="sidebar__item" href="#">Авито Аукцион</a>
+            <a class="sidebar__item" href="#">Звонки</a>
+            <a class="sidebar__item" href="#">Маркетинг</a>
+            <a class="sidebar__item" href="#">Обработка трафика</a>
+            <a class="sidebar__item sidebar__item--active" href="#">Услуги и финансы</a>
+            <a class="sidebar__item" href="#">Сотрудники</a>
+            <a class="sidebar__item" href="#">Обучение</a>
+            <a class="sidebar__item" href="#">Настройки</a>
+          </nav>
+
+          <div class="sidebar__footer">
+            <p class="sidebar__caption">Связь с нами</p>
+            <a class="sidebar__link" href="#">Вопрос в поддержку</a>
+            <a class="sidebar__link" href="#">Оценить Автохаб</a>
+
+            <div class="manager-card">
+              <div class="manager-card__avatar">ИИ</div>
+              <div>
+                <strong>Иван Иванов</strong>
+                <p>Ваш менеджер</p>
+                <a href="mailto:ivanov@avito.ru">ivanov@avito.ru</a>
+              </div>
+            </div>
+
+            <button class="sidebar__collapse" type="button">Свернуть</button>
+          </div>
+        </aside>
+
+        <main class="content">
+          <section class="page-header">
+            <a class="page-header__back" href="#">Назад</a>
+
+            <div class="page-header__head">
+              <div>
+                <h1>Polo VI, 2020</h1>
+                <p class="page-header__subtitle">
+                  Новая сделка • WBAJY01050CG00801VIN • 208 CDI 2.3 MT (79 л.с.) •
+                  <a href="#">Объявление</a>
+                </p>
+              </div>
+
+              <div class="page-header__meta">
+                <span>Сделка 234324</span>
+                <span>Оценщик Иванов Иван</span>
+                <span>ТП Демо-Компания</span>
+              </div>
+            </div>
+
+            <div class="tabs" role="tablist" aria-label="Разделы сделки">
+              <button class="tabs__item" type="button">Описание</button>
+              <button class="tabs__item" type="button">Автотека</button>
+              <button class="tabs__item" type="button">Рынок</button>
+              <button class="tabs__item tabs__item--active" type="button">Оценка</button>
+              <button class="tabs__item" type="button">История</button>
+            </div>
+          </section>
+
+          <section class="calculator-layout">
+            <article class="calculator-card">
+              <div class="market-overview">
+                <div class="market-overview__top">
+                  <article class="metric-card metric-card--stacked">
+                    <div>
+                      <p class="metric-card__label">Цена в объявлении</p>
+                      <strong class="metric-card__value">4 000 000 ₽ <span class="metric-card__accent">↑</span></strong>
+                    </div>
+                    <div class="metric-card metric-card--inner">
+                      <p class="metric-card__label">Авито Оценка <span class="hint">?</span></p>
+                      <strong class="metric-card__value">3 950 000 ₽</strong>
+                      <span class="metric-card__range">3 830 000 – 4 100 000 ₽</span>
+                    </div>
+                  </article>
+
+                  <article class="metric-card metric-card--wide">
+                    <p class="metric-card__label">ПЦП Автохаба</p>
+                    <strong class="metric-card__value">4 150 000 ₽ <span class="metric-card__caret">›</span></strong>
+                    <span class="metric-card__subtext">На основе проданных авто</span>
+                    <div class="metric-card__chips">
+                      <span class="chip">56 авто ›</span>
+                      <span class="chip">За год ⌄</span>
+                    </div>
+                  </article>
+
+                  <article class="metric-card metric-card--wide metric-card--action">
+                    <button class="metric-card__button" type="button">Уточнить цены ✦</button>
+                    <p class="metric-card__label">Цена на рынке</p>
+                    <strong class="metric-card__value">4 150 000 ₽ <span class="metric-card__caret">›</span></strong>
+                    <span class="metric-card__subtext">На основе авто в продаже</span>
+                    <div class="metric-card__chips">
+                      <span class="chip">23 авто ›</span>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="market-overview__bottom">
+                  <article class="status-card status-card--green">
+                    <p class="status-card__label">Ликвидность</p>
+                    <strong class="status-card__value">A</strong>
+                  </article>
+                  <article class="status-card">
+                    <p class="status-card__label">Срок продажи</p>
+                    <strong class="status-card__value"><span class="dot"></span>26 дней</strong>
+                  </article>
+                  <article class="status-card">
+                    <p class="status-card__label">Снято за<br />60 дней <span class="hint">?</span></p>
+                    <strong class="status-card__value"><span class="dot"></span>70% авто</strong>
+                  </article>
+                  <article class="status-card">
+                    <p class="status-card__label">Пробег <span class="hint">?</span></p>
+                    <strong class="status-card__value"><span class="dot"></span>10 000 км</strong>
+                  </article>
+                  <article class="status-card">
+                    <p class="status-card__label">История ДТП</p>
+                    <strong class="status-card__value"><span class="dot"></span>1 ДТП</strong>
+                  </article>
+                </div>
+              </div>
+
+              <div class="estimation">
+                <h2>Оценить авто</h2>
+
+                <div class="estimation__grid">
+                  <section class="calc-column">
+                    <h3>Продажа</h3>
+
+                    <div class="calc-inline">
+                      <label class="form-field form-field--main">
+                        <span class="form-field__label">Цена продажи</span>
+                        <span class="form-field__control">
+                          <input id="salePrice" type="text" inputmode="numeric" value="4 500 000" />
+                          <em>₽</em>
+                        </span>
+                      </label>
+
+                      <label class="form-field form-field--compact">
+                        <span class="form-field__label">% к рынку</span>
+                        <span class="form-field__control">
+                          <input type="text" value="103" />
+                        </span>
+                      </label>
+                    </div>
+
+                    <p class="form-note">110% к ПЦП Автохаба</p>
+                    <p class="form-note">В диапазоне Авито Оценки <span class="gauge"></span></p>
+                  </section>
+
+                  <section class="calc-column">
+                    <h3>Прибыль</h3>
+
+                    <div class="calc-inline">
+                      <label class="form-field form-field--main">
+                        <span class="form-field__label">Маржа (GM1)</span>
+                        <span class="form-field__control">
+                          <input id="marginAmount" type="text" value="450 000" readonly />
+                          <em>₽</em>
+                        </span>
+                      </label>
+
+                      <label class="form-field form-field--compact">
+                        <span class="form-field__label">%</span>
+                        <span class="form-field__control">
+                          <input id="marginPercent" type="text" inputmode="decimal" value="10" />
+                        </span>
+                      </label>
+                    </div>
+                  </section>
+
+                  <section class="calc-column">
+                    <h3>Затраты: <strong id="totalCost">4 090 000 ₽</strong></h3>
+
+                    <div class="calc-inline">
+                      <label class="form-field form-field--main">
+                        <span class="form-field__label">Цена выкупа</span>
+                        <span class="form-field__control form-field__control--computed">
+                          <input id="purchasePrice" type="text" value="4 050 000" readonly />
+                          <em>₽</em>
+                        </span>
+                      </label>
+
+                      <label class="form-field form-field--compact">
+                        <span class="form-field__label">% к рынку</span>
+                        <span class="form-field__control">
+                          <input type="text" value="103" />
+                        </span>
+                      </label>
+                    </div>
+
+                    <p class="form-note">110% к ПЦП Автохаба</p>
+                  </section>
+                </div>
+
+                <div class="estimation__footer">
+                  <label class="form-field">
+                    <span class="form-field__label">Рейтинг цены <span class="hint">i</span></span>
+                    <span class="form-field__control">
+                      <input type="text" value="2 из 87" />
+                    </span>
+                  </label>
+
+                  <label class="form-field">
+                    <span class="form-field__label">Прогноз продажи <span class="hint">i</span></span>
+                    <span class="form-field__control">
+                      <input type="text" value="7 дней" />
+                    </span>
+                  </label>
+
+                  <label class="form-field">
+                    <span class="form-field__label">Подготовка</span>
+                    <span class="form-field__control">
+                      <input id="prepCost" type="text" inputmode="numeric" value="40 000" />
+                      <em>₽</em>
+                    </span>
+                  </label>
+                </div>
+
+                <label class="form-field form-field--comment">
+                  <span class="form-field__label">Комментарий</span>
+                  <textarea rows="3">Информация о состоянии и комплектации авто, необходимом ремонте и результатах оценки</textarea>
+                </label>
+              </div>
+            </article>
+
+            <aside class="history-card">
+              <div>
+                <h3>Оценка сохранена</h3>
+                <p>12 янв 2026 Иван Иванов</p>
+              </div>
+
+              <dl class="history-card__stats">
+                <div>
+                  <dt>Закупочная цена</dt>
+                  <dd id="historyPurchase">4 050 000 ₽</dd>
+                </div>
+                <div>
+                  <dt>Маржа</dt>
+                  <dd id="historyMargin">450 000 ₽</dd>
+                </div>
+                <div>
+                  <dt>Цена продажи</dt>
+                  <dd id="historySale">4 500 000 ₽</dd>
+                </div>
+              </dl>
+
+              <button class="history-card__button" type="button">Подробнее в истории</button>
+            </aside>
+          </section>
+
+          <div class="bottom-bar" aria-label="Действия с оценкой">
+            <div class="bottom-bar__main">
+              <button class="bottom-bar__button bottom-bar__button--primary" type="button">Сохранить оценку</button>
+              <button class="bottom-bar__button" type="button">Отправить на согласование</button>
+              <button class="bottom-bar__button" type="button">Завершить</button>
+            </div>
+
+            <div class="bottom-bar__side">
+              <button class="bottom-bar__icon" type="button" aria-label="Печать">
+                <span>🖨</span>
+              </button>
+              <button class="bottom-bar__icon" type="button" aria-label="Редактировать">
+                <span>✎</span>
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
