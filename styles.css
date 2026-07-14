@@ -1027,7 +1027,6 @@ a {
 }
 
 .market-row--compare {
-  grid-template-columns: 165px minmax(0, 1fr) 148px 89px;
   min-height: 156px;
   background: #f3edfe;
 }
