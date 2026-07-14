@@ -1336,10 +1336,25 @@ a {
   align-items: center;
   min-height: 32px;
   padding: 0 12px;
+  border: 0;
   border-radius: 12px;
   background: #eceae7;
   font-size: 15px;
   line-height: 20px;
+}
+
+.chip--link {
+  cursor: pointer;
+  font: inherit;
+}
+
+.chip--link:hover {
+  background: #e2e0dc;
+}
+
+.chip--link:focus-visible {
+  outline: 2px solid #0b7cff;
+  outline-offset: 2px;
 }
 
 .status-card {

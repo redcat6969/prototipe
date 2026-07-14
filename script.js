@@ -15,6 +15,7 @@ const secondaryWidgetButton = document.querySelector("#secondaryWidgetButton");
 const tabs = document.querySelectorAll(".tabs__item");
 const estimatePanel = document.querySelector("#estimatePanel");
 const marketPanel = document.querySelector("#marketPanel");
+const marketCarsChip = document.querySelector("#marketCarsChip");
 const marketChartToggle = document.querySelector("#marketChartToggle");
 const marketList = document.querySelector(".market-list");
 const marketChart = document.querySelector("#marketChart");
@@ -214,22 +215,26 @@ roleLanding.addEventListener("click", (event) => {
   }
 });
 
+function showContentTab(tabName) {
+  const isMarketTab = tabName === "market";
+
+  tabs.forEach((tab) => {
+    tab.classList.toggle("tabs__item--active", tab.dataset.tab === tabName);
+  });
+
+  estimatePanel.hidden = isMarketTab;
+  marketPanel.hidden = !isMarketTab;
+}
+
 tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
-    if (tab.dataset.tab !== "market" && tab.dataset.tab !== "estimate") {
-      return;
+    if (tab.dataset.tab === "market" || tab.dataset.tab === "estimate") {
+      showContentTab(tab.dataset.tab);
     }
-
-    const isMarketTab = tab.dataset.tab === "market";
-
-    tabs.forEach((item) => {
-      item.classList.toggle("tabs__item--active", item === tab);
-    });
-
-    estimatePanel.hidden = isMarketTab;
-    marketPanel.hidden = !isMarketTab;
   });
 });
+
+marketCarsChip.addEventListener("click", () => showContentTab("market"));
 
 marketChartToggle.addEventListener("click", () => {
   const showChart = marketChart.hidden;
