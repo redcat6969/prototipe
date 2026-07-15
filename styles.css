@@ -1472,6 +1472,11 @@ a {
   font-weight: 700;
 }
 
+.calc-column__total {
+  margin-left: 4px;
+  font-weight: 700;
+}
+
 .calc-column__hint {
   margin: 0;
   color: #757575;
@@ -1483,6 +1488,18 @@ a {
   color: #8f8f8f;
   font-size: 15px;
   line-height: 20px;
+}
+
+.form-field__hint {
+  display: block;
+  margin-top: 4px;
+  color: #757575;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.form-field__hint--spacer {
+  visibility: hidden;
 }
 
 .calc-inline {
@@ -1556,7 +1573,7 @@ a {
   height: 10px;
   margin-left: 4px;
   border-radius: 9px 9px 0 0;
-  background: linear-gradient(90deg, #ffbf3f, #ffa423);
+  background: linear-gradient(90deg, #2dcc70, #0aaa4f);
 }
 
 .estimation__footer {
