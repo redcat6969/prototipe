@@ -39,7 +39,7 @@
         <div class="topbar__meta">
           <span>ID: 5</span>
           <button class="topbar__chip" type="button">Аксель</button>
-          <button class="topbar__chip" type="button">Иван Петров</button>
+          <button class="topbar__chip" type="button">Иванов Иван</button>
           <button class="topbar__icon" type="button" aria-label="Календарь">
             <span>◫</span>
           </button>
@@ -137,7 +137,7 @@
 
                   <article class="metric-card metric-card--wide">
                     <p class="metric-card__label">ПЦП Автохаба</p>
-                    <strong class="metric-card__value">1 451 000 ₽ <span class="metric-card__caret">›</span></strong>
+                    <strong class="metric-card__value" id="pcpPriceReference">1 451 000 ₽ <span class="metric-card__caret">›</span></strong>
                     <span class="metric-card__subtext">На основе проданных авто</span>
                     <div class="metric-card__chips">
                       <span class="chip">24 авто</span>
@@ -148,7 +148,7 @@
                   <article class="metric-card metric-card--wide metric-card--action">
                     <button class="metric-card__button" type="button">Уточнить цены ✦</button>
                     <p class="metric-card__label">Цена на рынке</p>
-                    <strong class="metric-card__value">1 650 000 ₽ <span class="metric-card__caret">›</span></strong>
+                    <strong class="metric-card__value" id="marketPriceReference">1 650 000 ₽ <span class="metric-card__caret">›</span></strong>
                     <span class="metric-card__subtext">На основе авто в продаже</span>
                     <div class="metric-card__chips">
                       <button class="chip chip--link" id="marketCarsChip" type="button">5 авто</button>
@@ -202,7 +202,7 @@
                       <label class="form-field">
                         <span class="form-field__label">К рынку <span class="hint">i</span></span>
                         <span class="form-field__control">
-                          <input type="text" value="10" />
+                          <input id="saleToMarketPercent" type="text" inputmode="decimal" value="94" aria-label="Цена продажи к рынку" />
                           <em>%</em>
                         </span>
                       </label>
@@ -210,7 +210,7 @@
                       <label class="form-field">
                         <span class="form-field__label">К ПЦП Автохаб <span class="hint">i</span></span>
                         <span class="form-field__control">
-                          <input type="text" value="10" />
+                          <input id="saleToPcpPercent" type="text" inputmode="decimal" value="107" aria-label="Цена продажи к ПЦП Автохаб" />
                           <em>%</em>
                         </span>
                       </label>
@@ -275,7 +275,7 @@
                       <label class="form-field">
                         <span class="form-field__label">К рынку <span class="hint">i</span></span>
                         <span class="form-field__control">
-                          <input type="text" value="10" />
+                          <input id="purchaseToMarketPercent" type="text" inputmode="decimal" value="85" aria-label="Цена выкупа к рынку" />
                           <em>%</em>
                         </span>
                       </label>
@@ -283,7 +283,7 @@
                       <label class="form-field">
                         <span class="form-field__label">К ПЦП Автохаб <span class="hint">i</span></span>
                         <span class="form-field__control">
-                          <input type="text" value="10" />
+                          <input id="purchaseToPcpPercent" type="text" inputmode="decimal" value="97" aria-label="Цена выкупа к ПЦП Автохаб" />
                           <em>%</em>
                         </span>
                       </label>
@@ -422,24 +422,24 @@
                 <section class="market-chart" id="marketChart" hidden aria-label="График рынка">
                   <div class="market-chart__plot">
                     <div class="market-chart__y-axis" aria-hidden="true">
-                      <span>1,3 млн ₽</span><span>1,2 млн ₽</span><span>900 т. ₽</span>
-                      <span>700 т. ₽</span><span>600 т. ₽</span><span>500 т. ₽</span>
+                      <span>1,7 млн ₽</span><span>1,6 млн ₽</span><span>1,5 млн ₽</span>
+                      <span>1,4 млн ₽</span><span>1,3 млн ₽</span><span>1,2 млн ₽</span>
                     </div>
                     <div class="market-chart__canvas" aria-label="Соотношение цены и пробега объявлений">
                       <span class="market-chart__line market-chart__line--horizontal"></span>
                       <span class="market-chart__line market-chart__line--vertical"></span>
                       <span class="market-chart__trend" aria-hidden="true"></span>
-                      <button class="market-chart__point market-chart__point--private market-chart__point--rose" type="button" style="--x: 27%; --y: 11%"></button>
-                      <button class="market-chart__point market-chart__point--professional market-chart__point--rose" type="button" style="--x: 53%; --y: 20%"></button>
-                      <button class="market-chart__point market-chart__point--holding market-chart__point--blue" type="button" style="--x: 72%; --y: 67%"></button>
-                      <button class="market-chart__point market-chart__point--private market-chart__point--green" type="button" style="--x: 18%; --y: 67%"></button>
-                      <button class="market-chart__point market-chart__point--professional market-chart__point--green" type="button" style="--x: 60%; --y: 81%"></button>
-                      <button class="market-chart__point market-chart__point--subject" type="button" style="--x: 40%; --y: 54%"></button>
+                      <button class="market-chart__point market-chart__point--private" type="button"></button>
+                      <button class="market-chart__point market-chart__point--professional" type="button"></button>
+                      <button class="market-chart__point market-chart__point--holding" type="button"></button>
+                      <button class="market-chart__point market-chart__point--private" type="button"></button>
+                      <button class="market-chart__point market-chart__point--professional" type="button"></button>
+                      <button class="market-chart__point market-chart__point--subject" type="button"></button>
                       <div class="market-chart__tooltip" id="marketChartTooltip" role="status" aria-hidden="true"><strong></strong><span></span></div>
                     </div>
                     <div class="market-chart__x-axis" aria-hidden="true">
                       <span>25 т. км</span><span>50 т. км</span><span>100 т. км</span>
-                      <span>150 т. км</span><span>200 т. км</span><span>225 т. км</span>
+                      <span>150 т. км</span><span>200 т. км</span><span>300 т. км</span>
                     </div>
                     <article class="market-chart__selected">
                       <div class="market-chart__selected-photo"><img id="marketSelectedImage" src="./assets/polo-1.jpg" alt="Polo VI, 2020" /><time id="marketSelectedDate">3 апреля 2026</time></div>
@@ -477,7 +477,7 @@
                 <p>Затраты: <strong>405 000 ₽</strong></p>
                 <p>Маржа (GM1): <strong>45 000 ₽ (10%)</strong></p>
               </div>
-              <button class="market-summary-card__button" type="button">К оценке</button>
+              <button class="market-summary-card__button" id="goToEstimateButton" type="button">К оценке</button>
             </aside>
           </section>
         </main>

@@ -4,6 +4,12 @@ const purchasePriceInput = document.querySelector("#purchasePrice");
 const marginAmountInput = document.querySelector("#marginAmount");
 const totalCostLabel = document.querySelector("#totalCost");
 const prepCostInput = document.querySelector("#prepCost");
+const marketPriceReference = document.querySelector("#marketPriceReference");
+const pcpPriceReference = document.querySelector("#pcpPriceReference");
+const saleToMarketPercentInput = document.querySelector("#saleToMarketPercent");
+const saleToPcpPercentInput = document.querySelector("#saleToPcpPercent");
+const purchaseToMarketPercentInput = document.querySelector("#purchaseToMarketPercent");
+const purchaseToPcpPercentInput = document.querySelector("#purchaseToPcpPercent");
 const widgetPurchasePrice = document.querySelector("#widgetPurchasePrice");
 const widgetMarginAmount = document.querySelector("#widgetMarginAmount");
 const widgetSalePrice = document.querySelector("#widgetSalePrice");
@@ -16,6 +22,7 @@ const tabs = document.querySelectorAll(".tabs__item");
 const estimatePanel = document.querySelector("#estimatePanel");
 const marketPanel = document.querySelector("#marketPanel");
 const marketCarsChip = document.querySelector("#marketCarsChip");
+const goToEstimateButton = document.querySelector("#goToEstimateButton");
 const marketChartToggle = document.querySelector("#marketChartToggle");
 const marketList = document.querySelector(".market-list");
 const marketChart = document.querySelector("#marketChart");
@@ -45,10 +52,40 @@ const chartListings = [
 ];
 
 function parseNumber(value) {
-  const normalized = value.replace(/\s+/g, "").replace(",", ".");
+  const normalized = value.replace(/[^\d,.-]/g, "").replace(",", ".");
   const parsed = Number(normalized);
   return Number.isFinite(parsed) ? parsed : 0;
 }
+
+function positionMarketChartPoints() {
+  const mileageRange = { min: 25_000, max: 300_000 };
+  const priceRange = { min: 1_200_000, max: 1_700_000 };
+  const trendRange = { startPrice: 1_620_000, endPrice: 1_290_000 };
+  const plotPadding = 4;
+  const plotSize = 100 - plotPadding * 2;
+
+  marketChartPoints.forEach((point, index) => {
+    const listing = chartListings[index];
+    const mileage = parseNumber(listing.mileage);
+    const price = parseNumber(listing.price);
+    const x = plotPadding + ((mileage - mileageRange.min) / (mileageRange.max - mileageRange.min)) * plotSize;
+    const y = plotPadding + (1 - (price - priceRange.min) / (priceRange.max - priceRange.min)) * plotSize;
+    const trendPrice = trendRange.startPrice + ((mileage - mileageRange.min) / (mileageRange.max - mileageRange.min)) * (trendRange.endPrice - trendRange.startPrice);
+    const distanceFromTrend = price - trendPrice;
+    const colorClass = distanceFromTrend > 50_000
+      ? "market-chart__point--rose"
+      : distanceFromTrend < -50_000
+        ? "market-chart__point--green"
+        : "market-chart__point--blue";
+
+    point.style.setProperty("--x", `${Math.min(100 - plotPadding, Math.max(plotPadding, x)).toFixed(1)}%`);
+    point.style.setProperty("--y", `${Math.min(100 - plotPadding, Math.max(plotPadding, y)).toFixed(1)}%`);
+    point.classList.remove("market-chart__point--rose", "market-chart__point--blue", "market-chart__point--green");
+    point.classList.add(colorClass);
+  });
+}
+
+positionMarketChartPoints();
 
 function formatMoney(value) {
   return new Intl.NumberFormat("ru-RU").format(Math.round(value));
@@ -61,10 +98,24 @@ function formatPercent(value) {
   }).format(value);
 }
 
+function formatWholePercent(value) {
+  return new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 }).format(value);
+}
+
 function syncWidget(salePrice, purchasePrice, marginAmount) {
   widgetPurchasePrice.textContent = `${formatMoney(purchasePrice)} ₽`;
   widgetMarginAmount.textContent = `${formatMoney(marginAmount)} ₽`;
   widgetSalePrice.textContent = `${formatMoney(salePrice)} ₽`;
+}
+
+function syncReferencePercents(salePrice, purchasePrice) {
+  const marketPrice = parseNumber(marketPriceReference.textContent);
+  const pcpPrice = parseNumber(pcpPriceReference.textContent);
+
+  saleToMarketPercentInput.value = formatWholePercent(marketPrice ? (salePrice / marketPrice) * 100 : 0);
+  saleToPcpPercentInput.value = formatWholePercent(pcpPrice ? (salePrice / pcpPrice) * 100 : 0);
+  purchaseToMarketPercentInput.value = formatWholePercent(marketPrice ? (purchasePrice / marketPrice) * 100 : 0);
+  purchaseToPcpPercentInput.value = formatWholePercent(pcpPrice ? (purchasePrice / pcpPrice) * 100 : 0);
 }
 
 function recalculateFromSale() {
@@ -79,6 +130,7 @@ function recalculateFromSale() {
   marginAmountInput.value = formatMoney(marginAmount);
   totalCostLabel.textContent = `${formatMoney(totalCost)} ₽`;
   syncWidget(salePrice, purchasePrice, marginAmount);
+  syncReferencePercents(salePrice, purchasePrice);
 }
 
 function recalculateFromMargin() {
@@ -93,6 +145,7 @@ function recalculateFromMargin() {
   marginPercentInput.value = formatPercent(marginPercent);
   totalCostLabel.textContent = `${formatMoney(totalCost)} ₽`;
   syncWidget(salePrice, purchasePrice, marginAmount);
+  syncReferencePercents(salePrice, purchasePrice);
 }
 
 function recalculateFromPurchase() {
@@ -107,6 +160,7 @@ function recalculateFromPurchase() {
   marginPercentInput.value = formatPercent(marginPercent);
   totalCostLabel.textContent = `${formatMoney(totalCost)} ₽`;
   syncWidget(salePrice, purchasePrice, marginAmount);
+  syncReferencePercents(salePrice, purchasePrice);
 }
 
 function normalizeMoneyInput(event) {
@@ -144,6 +198,31 @@ purchasePriceInput.addEventListener("input", (event) => {
 prepCostInput.addEventListener("input", (event) => {
   normalizeMoneyInput(event);
   recalculateFromSale();
+});
+
+function recalculateFromReferencePercent(event, referencePriceElement, targetPriceInput, recalculate) {
+  normalizePercentInput(event);
+  const referencePrice = parseNumber(referencePriceElement.textContent);
+  const percent = parseNumber(event.target.value);
+
+  targetPriceInput.value = formatMoney(referencePrice * (percent / 100));
+  recalculate();
+}
+
+saleToMarketPercentInput.addEventListener("input", (event) => {
+  recalculateFromReferencePercent(event, marketPriceReference, salePriceInput, recalculateFromSale);
+});
+
+saleToPcpPercentInput.addEventListener("input", (event) => {
+  recalculateFromReferencePercent(event, pcpPriceReference, salePriceInput, recalculateFromSale);
+});
+
+purchaseToMarketPercentInput.addEventListener("input", (event) => {
+  recalculateFromReferencePercent(event, marketPriceReference, purchasePriceInput, recalculateFromPurchase);
+});
+
+purchaseToPcpPercentInput.addEventListener("input", (event) => {
+  recalculateFromReferencePercent(event, pcpPriceReference, purchasePriceInput, recalculateFromPurchase);
 });
 
 function setManagerApprovalPending() {
@@ -235,6 +314,7 @@ tabs.forEach((tab) => {
 });
 
 marketCarsChip.addEventListener("click", () => showContentTab("market"));
+goToEstimateButton.addEventListener("click", () => showContentTab("estimate"));
 
 marketChartToggle.addEventListener("click", () => {
   const showChart = marketChart.hidden;

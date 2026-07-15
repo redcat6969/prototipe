@@ -263,6 +263,11 @@ a {
   padding: 12px 24px 20px;
 }
 
+.sidebar__footer .sidebar__link {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 .sidebar__caption {
   margin: 0 0 8px;
   color: var(--text-tertiary);
@@ -720,8 +725,12 @@ a {
   width: 15px;
   height: 15px;
   border-color: #000;
-  background: #16a8e3;
+  background: var(--point-color, #16a8e3);
 }
+
+.market-chart__point--subject.market-chart__point--rose { background: #ff98a5; }
+.market-chart__point--subject.market-chart__point--blue { background: #68c9f3; }
+.market-chart__point--subject.market-chart__point--green { background: #66dba3; }
 
 .market-chart__tooltip {
   position: absolute;
