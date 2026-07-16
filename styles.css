@@ -319,14 +319,20 @@ a {
 }
 
 .page-header {
+  position: relative;
   padding: 32px 32px 0;
+}
+
+.page-header__top {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
 }
 
 .page-header__back {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 12px;
   font-size: 15px;
   font-weight: 500;
   line-height: 20px;
@@ -338,8 +344,6 @@ a {
 
 .page-header__head {
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
   align-items: flex-start;
 }
 
@@ -352,22 +356,73 @@ a {
 }
 
 .page-header__subtitle {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
   margin: 0;
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 .page-header__subtitle a {
-  color: #0099f7;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-.page-header__meta {
-  display: grid;
-  gap: 4px;
-  color: var(--text-secondary);
+.page-header__copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.page-header__copy svg,
+.page-header__action svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.page-header__actions {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-header__action {
+  min-height: 40px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 12px;
+  background: #f2f1f0;
+  color: #000;
   font-size: 13px;
   line-height: 16px;
-  text-align: right;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.page-header__action--icon {
+  width: 48px;
+  padding: 0;
+}
+
+.page-header__action--primary {
+  background: #000;
+  color: #fff;
 }
 
 .tabs {
@@ -1757,12 +1812,13 @@ a {
     border-radius: 0;
   }
 
-  .page-header__head {
-    flex-direction: column;
+  .page-header__top {
+    margin-bottom: 12px;
   }
 
-  .page-header__meta {
-    text-align: left;
+  .page-header__actions {
+    position: static;
+    margin-left: auto;
   }
 }
 

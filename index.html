@@ -92,21 +92,35 @@
 
         <main class="content">
           <section class="page-header">
-            <a class="page-header__back" href="#">Назад</a>
+            <div class="page-header__top">
+              <a class="page-header__back" href="#">Назад</a>
+
+              <div class="page-header__actions" aria-label="Действия со сделкой">
+                <button class="page-header__action page-header__action--icon" type="button" aria-label="Печать">
+                  <svg viewBox="0 0 20 20" aria-hidden="true">
+                    <path d="M6 7V3h8v4M6 14H4V8h12v6h-2M6 11h8v6H6z" />
+                  </svg>
+                </button>
+                <button class="page-header__action" type="button">Редактировать</button>
+                <button class="page-header__action page-header__action--primary" type="button">Завершить</button>
+              </div>
+            </div>
 
             <div class="page-header__head">
               <div>
                 <h1>Volkswagen Polo V Рестайлинг, 2020</h1>
                 <p class="page-header__subtitle">
-                  WBAJY01050CG00801VIN • 208 CDI 2.3 MT (79 л.с.) • Техно • 25 739 км • Новая сделка •
+                  <span>WBAJY01050CG00801VIN</span>
+                  <button class="page-header__copy" type="button" aria-label="Скопировать VIN">
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                      <path d="M5 4V2h8v9h-2M3 5h8v9H3z" />
+                    </svg>
+                  </button>
+                  <span>• 208 CDI 2.3 MT (79 л.с.) • Техно • Новая сделка • 25 739 км •</span>
+                  <a href="#">ТП Демо-Компания</a>
+                  <span>•</span>
                   <a href="#">Объявление</a>
                 </p>
-              </div>
-
-              <div class="page-header__meta">
-                <span>Новая сделка</span>
-                <span>Оценщик Иванов Иван</span>
-                <span>ТП Демо-Компания</span>
               </div>
             </div>
 
